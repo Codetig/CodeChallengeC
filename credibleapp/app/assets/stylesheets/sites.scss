@@ -1,0 +1,27 @@
+// Place all the styles related to the sites controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.intro {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("/assets/home3.jpg");
+}
+
+.call {
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+  width: 40%;
+  margin: 0 auto;
+  padding-top: 18%;
+}
+
+.action-btns {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  a {
+    margin-right: 5px;
+  }
+}
