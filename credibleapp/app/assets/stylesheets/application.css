@@ -18,6 +18,47 @@ html, body {
   height:100%;
 }
 
+.my-nav {
+  z-index: 300;
+  background-color: rgba(255,255,255, 1);
+}
+
+.my-modal {
+  margin: 0 auto;
+  position: absolute;
+  top: 2%;
+  z-index: 300;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  margin-top: 3%;
+  padding: 1%;
+  /*border-radius: 5%;*/
+}
+
+.twhite{
+  color: white;
+}
+
+.tblack {
+  color: black;
+}
+
+.img-sep {
+  height: 150px;
+  width: 100%;
+}
+
+footer {
+  background-color: black;
+  min-height: 15%;
+}
+
+/*#signin {
+  height: 50%;
+  width: 30%;
+  left: 35%;
+}*/
+
 /*.intro {
   height: 100%;
   background-image: url("/assets/home3.jpg");

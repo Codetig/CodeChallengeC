@@ -1,25 +1,27 @@
   
   <div class="intro">
     <div class="call container-fluid">
-      <h2>Can we afford that house?</h2>
+      <h2>Can I afford that house?</h2>
       <p>Sign up and be able to save your results or find out right now...</p>
-      <span class="action-btns container-fluid"><a class="btn btn-primary" href="#">Sign Up</a> <a class="btn btn-default" href="#">Find out</a></span>
+      <span class="action-btns container-fluid"><a class="btn btn-success sign-up" href="#">Sign Up</a> <a class="btn btn-primary" href="#new-search">Find out</a></span>
     </div>
   </div>
 
-  <div class="signin">
+  <div id="signin" class="my-modal text-center hidden">
+  <button type="button" class="close sign-in" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h2>Sign In</h2>
    <%= form_tag("/users/signin", method: "post") do %>
       <%= label_tag(:email, "Email:") %> <br>
       <%= text_field_tag(:email) %> <br>
       <%= label_tag(:password, "Password:") %> <br>
-      <%= text_field_tag(:password) %> <br>
+      <%= text_field_tag(:password) %> <br> <br>
       <%= submit_tag("Sign In", class: "btn btn-primary") %>
     <% end %>
   </div>
 
-  <div class="signup">
-    <h2>Sign Up</h2>
+  <div id="signup" class="my-modal hidden">
+  <button type="button" class="close sign-up" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h2 class="text-center">Sign Up</h2> <br>
    <%= form_tag("/users/signup", method: "post") do %>
       <p><%= label_tag(:first_name, "First Name:") %> <%= text_field_tag(:first_name) %> </p>
       <p><%= label_tag(:last_name, "Last Name:") %> <%= text_field_tag(:last_name) %> </p>
@@ -28,34 +30,37 @@
       <p><%= label_tag(:password, "Password:") %>
       <%= text_field_tag(:password) %> </p>
       <p><%= label_tag(:annual_income, "Annual Income:") %> <%= text_field_tag(:annual_income) %> </p>
-      <p><%= label_tag(:budgeted_monthly_pmt, "Expected Monthly Mortgage Payment:") %> <%= text_field_tag(:budgeted_monthly_pmt) %> </p>
+      <p><%= label_tag(:budgeted_monthly_pmt, "Monthly Mortgage Desired:") %> <%= text_field_tag(:budgeted_monthly_pmt) %> </p>
       <p><%= label_tag(:down_pmt, "Expected Down Payment:") %> <%= text_field_tag(:down_pmt) %> </p>
       <p><%= label_tag(:monthly_debt, "Monthly Debt:") %> <%= text_field_tag(:monthly_debt) %> </p>
 
-      <%= submit_tag("Sign Up", class: "btn btn-primary") %>
+      <%= submit_tag("Sign Up", class: "btn btn-primary text-center") %>
     <% end %>
   </div>
 
-  <div class="searches">
+  <div id="prev-search" class="container">
     <h1>Previous Searches</h1>
     <p>The list below are of previous searches made</p>
   </div>
 
-  <div class="new-search">
+  <%= image_tag("wall1", class: "img-sep") %>
+
+  <div id="new-search" class="container">
     <h1>Search Form</h1>
-    <%= form_tag("/search", method: "post") do %>
-      <p><%= label_tag(:annualincome, "Annual Income:") %>
+    <%= form_tag("/search", method: "post", class: "search-form") do %>
+      <p><%= label_tag(:monthlypayment, "Monthly Mortgage Desired:") %>
+      <%= number_field_tag(:monthlypayment) %> --or--  
+      <%= label_tag(:annualincome, "Annual Income:") %>
       <%= number_field_tag(:annualincome) %></p>
-      <p><%= label_tag(:monthlypayment, "Desired Monthly:") %>
-      <%= number_field_tag(:monthlypayment) %></p>
       <p><%= label_tag(:down, "Expected Down Payment:") %>
       <%= number_field_tag(:down) %></p>
       <p><%= label_tag(:monthlydebts, "Current Monthly Debt:") %>
       <%= number_field_tag(:monthlydebts) %></p>
-      <div class="adv-options">
+      <p><a href="#" class="result-toggle">Show Other Options</a></p>
+      <div class="adv-options hidden">
         <p><%= label_tag(:rate, "Expected Interest Rate (%):") %><%= number_field_tag(:rate) %></p>
         <p>You may select an amortization schedule below: <br>
-        <%= radio_button_tag(:schedule, "none", :checked) %> <%= label_tag(:schedule, "None") %> <%= radio_button_tag(:schedule, "yearly") %> <%= label_tag(:schedule, "Yearly") %> <%= radio_button_tag(:schedule, "monthly") %> <%= label_tag(:schedule, "Monthly") %> <%= radio_button_tag(:schedule, "both") %> <%= label_tag(:schedule, "Both") %></p>
+        <%= radio_button_tag(:schedule, "none") %> <%= label_tag(:schedule, "None") %> <%= radio_button_tag(:schedule, "yearly", :checked) %> <%= label_tag(:schedule, "Yearly") %> <%= radio_button_tag(:schedule, "monthly") %> <%= label_tag(:schedule, "Monthly") %> <%= radio_button_tag(:schedule, "both") %> <%= label_tag(:schedule, "Both") %></p>
         <p><%= label_tag(:term, "Desired Mortgage Term (in years):") %>
       <%= number_field_tag(:term, "30") %></p>
       <p><%= label_tag(:debttoincome, "Debt-to-income Ratio Limit (%):") %>
@@ -64,7 +69,7 @@
       <%= number_field_tag(:incometax, 30) %></p>
       <p><%= check_box_tag(:estimate) %> <%= label_tag(:estimate, "Estimate (PMI, hazard insurance and property tax, and returns them)?") %></p>
       <p>Zipcode must be provided to correctly estimate premiums and taxes <br>
-      <%= label_tag(:zip, "Zip Code of Property:") %>
+      <%= label_tag(:zip, "Desired Zipcode:") %>
       <%= text_field_tag(:zip) %></p>
       <p><%= label_tag(:hazard, "Expected Hazard Insurance Premium:") %>
       <%= number_field_tag(:hazard) %></p>
@@ -78,7 +83,24 @@
 
       <%= submit_tag("Estimate", class: "btn btn-primary") %>
     <% end %>
+  </div>
 
+  
+
+  <div id="search-result">
+    <%= image_tag("home2", class: "res-img") %>
+    <h2>Search Result</h2>
+    <p class="col-md-12"><a href="#search-result" class="result-toggle">Hide Parameters</a></p>
+    <div class="request"></div>
+    <br>
+    <p class="col-md-12"><a href="#search-result" class="result-toggle">Hide Affordability</a></p>
+    <div class="response">
+    <ul class="list-group"></ul>
+    </div>
+    <br>
+    <p class="col-md-12"><a href="#search-result" class="result-toggle">Show Amortization</a></p>
+    <div class="amortization">
+    </div>
   </div>
 
   <div class="user-details">

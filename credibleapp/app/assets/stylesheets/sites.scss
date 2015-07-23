@@ -9,12 +9,37 @@
   background-image: url("/assets/home3.jpg");
 }
 
+#prev-search {
+  margin-top: 5%;
+  height: 100%;
+}
+
+#new-search {
+  height: 100%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  overflow-y: scroll;
+}
+
+#search-result {
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom:10%;
+  h2 {
+    margin-top: 4%;
+  }
+  ul{
+  list-style-type: none;
+  }
+}
+
 .call {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   color: white;
   width: 40%;
   margin: 0 auto;
-  padding-top: 18%;
+  padding-top: 12%;
+  padding-bottom: 5%;
 }
 
 .action-btns {
@@ -25,3 +50,46 @@
     margin-right: 5px;
   }
 }
+
+#signin {
+  height: 50%;
+  width: 30%;
+  left: 35%;
+  input {
+    color: black;
+  }
+  .btn{ color: white;}
+}
+
+#signup {
+  height: 80%;
+  width: 40%;
+  left: 30%;
+  input {
+    color: black;
+  }
+  .btn { 
+    color: white;
+  }
+}
+
+.request {
+  max-width: 800px;
+
+  .label-info{
+    margin-right: 1%;
+  }
+}
+
+
+.response {
+  ul li:hover {
+    background-color: rgb(240,248,255);
+  }
+}
+
+.res-img {
+  height: 600px;
+  width: 100%;
+}
+

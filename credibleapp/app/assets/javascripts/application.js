@@ -12,5 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  console.log("Applcation.js up!");
+
+  //setting the tabs to go active and inactive
+  var navs = [$('.intro'),$('#prev-search'), $('#new-search')];
+  navs.forEach(function(el, i){
+    var link = $('.link' + (i + 1));
+
+    el.on('mouseover',function(e){link.addClass('active');});
+    el.on('mouseout',function(e){link.removeClass('active');});
+  });
+
+});
