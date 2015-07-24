@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'sites#index'
   post "/users/signin", to: "users#login"
   post "/users/signup", to: "users#create"
+  get "/users/signout", to: "users#logout"
   post "/search", to: "prospects#search", as: "search"
 
   resources :users, shallow: true do

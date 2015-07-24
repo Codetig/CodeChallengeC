@@ -1,12 +1,15 @@
   
   <div class="intro">
+  <% unless @user %>
     <div class="call container-fluid">
       <h2>Can I afford that house?</h2>
       <p>Sign up and be able to save your results or find out right now...</p>
       <span class="action-btns container-fluid"><a class="btn btn-success sign-up" href="#">Sign Up</a> <a class="btn btn-primary" href="#new-search">Find out</a></span>
     </div>
+    <% end %>
   </div>
 
+  <% unless @user %>
   <div id="signin" class="my-modal text-center hidden">
   <button type="button" class="close sign-in" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h2>Sign In</h2>
@@ -14,7 +17,7 @@
       <%= label_tag(:email, "Email:") %> <br>
       <%= text_field_tag(:email) %> <br>
       <%= label_tag(:password, "Password:") %> <br>
-      <%= text_field_tag(:password) %> <br> <br>
+      <%= password_field_tag(:password) %> <br> <br>
       <%= submit_tag("Sign In", class: "btn btn-primary") %>
     <% end %>
   </div>
@@ -22,24 +25,25 @@
   <div id="signup" class="my-modal hidden">
   <button type="button" class="close sign-up" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h2 class="text-center">Sign Up</h2> <br>
-   <%= form_tag("/users/signup", method: "post") do %>
-      <p><%= label_tag(:first_name, "First Name:") %> <%= text_field_tag(:first_name) %> </p>
-      <p><%= label_tag(:last_name, "Last Name:") %> <%= text_field_tag(:last_name) %> </p>
-      <p><%= label_tag(:email, "Email:") %>
-      <%= text_field_tag(:email) %> </p>
-      <p><%= label_tag(:password, "Password:") %>
-      <%= text_field_tag(:password) %> </p>
-      <p><%= label_tag(:annual_income, "Annual Income:") %> <%= text_field_tag(:annual_income) %> </p>
-      <p><%= label_tag(:budgeted_monthly_pmt, "Monthly Mortgage Desired:") %> <%= text_field_tag(:budgeted_monthly_pmt) %> </p>
-      <p><%= label_tag(:down_pmt, "Expected Down Payment:") %> <%= text_field_tag(:down_pmt) %> </p>
-      <p><%= label_tag(:monthly_debt, "Monthly Debt:") %> <%= text_field_tag(:monthly_debt) %> </p>
+   <%= form_for User.new, method: "post" do |f| %>
+      <p><%= f.label(:first_name, "First Name:") %> <%= f.text_field(:first_name) %> </p>
+      <p><%= f.label(:last_name, "Last Name:") %> <%= f.text_field(:last_name) %> </p>
+      <p><%= f.label(:email, "Email:") %>
+      <%= f.text_field(:email) %> </p>
+      <p><%= f.label(:password, "Password:") %>
+      <%= f.password_field(:password) %> </p>
+      <p><%= f.label(:annual_income, "Annual Income:") %> <%= f.text_field(:annual_income) %> </p>
+      <p><%= f.label(:budgeted_monthly_pmt, "Monthly Mortgage Desired:") %> <%= f.text_field(:budgeted_monthly_pmt) %> </p>
+      <p><%= f.label(:down_pmt, "Expected Down Payment:") %> <%= f.text_field(:down_pmt) %> </p>
+      <p><%= f.label(:monthly_debt, "Monthly Debt:") %> <%= f.text_field(:monthly_debt) %> </p>
 
-      <%= submit_tag("Sign Up", class: "btn btn-primary text-center") %>
+      <%= f.submit("Sign Up", class: "btn btn-primary text-center") %>
     <% end %>
   </div>
-
+  <% end %>
+  
   <div id="prev-search" class="container">
-    <h1>Previous Searches</h1>
+    <h1><%= "#{@user.first_name}'s" if @user %> Previous Searches</h1>
     <p>The list below are of previous searches made</p>
     <ul class="list-group"></ul>
   </div>
@@ -50,24 +54,24 @@
     <h1>Search Form</h1>
     <%= form_tag("/search", method: "post", class: "search-form") do %>
       <p><%= label_tag(:monthlypayment, "Monthly Mortgage Desired:") %>
-      <%= number_field_tag(:monthlypayment) %> --or--  
+      <%= number_field_tag(:monthlypayment, (@user.budgeted_monthly_pmt.to_i if @user) ) %> --or--  
       <%= label_tag(:annualincome, "Annual Income:") %>
-      <%= number_field_tag(:annualincome) %></p>
+      <%= number_field_tag(:annualincome, (@user.annual_income.to_i if @user)) %></p>
       <p><%= label_tag(:down, "Expected Down Payment:") %>
-      <%= number_field_tag(:down) %></p>
+      <%= number_field_tag(:down, (@user.down_pmt.to_i if @user)) %></p>
       <p><%= label_tag(:monthlydebts, "Current Monthly Debt:") %>
-      <%= number_field_tag(:monthlydebts) %></p>
+      <%= number_field_tag(:monthlydebts, (@user.monthly_debt.to_i if @user)) %></p>
       <p><a href="#" class="result-toggle">Show Other Options</a></p>
       <div class="adv-options hidden">
         <p><%= label_tag(:rate, "Expected Interest Rate (%):") %><%= number_field_tag(:rate) %></p>
         <p>You may select an amortization schedule below: <br>
         <%= radio_button_tag(:schedule, "none") %> <%= label_tag(:schedule, "None") %> <%= radio_button_tag(:schedule, "yearly", :checked) %> <%= label_tag(:schedule, "Yearly") %> <%= radio_button_tag(:schedule, "monthly") %> <%= label_tag(:schedule, "Monthly") %> <%= radio_button_tag(:schedule, "both") %> <%= label_tag(:schedule, "Both") %></p>
-        <p><%= label_tag(:term, "Desired Mortgage Term (in years):") %>
-      <%= number_field_tag(:term, "30") %></p>
+        <p><%= label_tag(:term, "Desired Mortgage Term: ") %>
+      <%= number_field_tag(:term, "30") %> years</p>
       <p><%= label_tag(:debttoincome, "Debt-to-income Ratio Limit (%):") %>
       <%= number_field_tag(:debttoincome, "36") %></p>
       <p><%= label_tag(:incometax, "Estimated Income Tax rate (%):") %>
-      <%= number_field_tag(:incometax, 30) %></p>
+      <%= number_field_tag(:incometax, (@user.tax_rate || 30 if @user)) %></p>
       <p><%= check_box_tag(:estimate) %> <%= label_tag(:estimate, "Estimate (PMI, hazard insurance and property tax, and returns them)?") %></p>
       <p>Zipcode must be provided to correctly estimate premiums and taxes <br>
       <%= label_tag(:zip, "Desired Zipcode:") %>
@@ -104,7 +108,36 @@
     </div>
   </div>
 
-  <div class="user-details">
-    <div class="edit-user"></div>
-    <div class="detail"></div>
+  <% if @user %>
+  <div id="user-details">
+    <div class="edit-user my-modal hidden">
+    <button type="button" class="close show-user" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
+      <h3 class="text-center">Edit User</h3>
+      <%= form_for @user do |f| %>
+      <p><%= f.label :first_name, "First Name:" %> <%= f.text_field :first_name %></p>
+      <p><%= f.label :last_name, "Last Name:" %> <%= f.text_field :last_name %></p>
+      <p><%= f.label :email, "Email:" %> <%= f.text_field :email %></p>
+      <p><%= f.label :annual_income, "Annual Income:" %> <%= f.number_field :annual_income %></p>
+      <p><%= f.label :budgeted_monthly_pmt, "Budgeted Monthly Payment:" %> <%= f.number_field :budgeted_monthly_pmt %></p>
+      <p><%= f.label :down_pmt, "Down Payment:" %> <%= f.number_field :down_pmt %></p>
+      <p><%= f.label :monthly_debt, "Monthly Debt:" %> <%= f.number_field :monthly_debt %></p>
+      <p><%= f.label :tax_rate, "Tax Rate:" %> <%= f.number_field :tax_rate %></p>
+      <p><%= f.label :term_months, "Mortgage Term in months:" %> <%= f.number_field :term_months %></p> <br>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="detail container">
+      <h3>User Details <a href="#" class="small show-user">edit</a></h3>
+      <p>Name: <%= "#{@user.first_name} #{@user.last_name}" %></p>
+      <p>Email: <%= @user.email %></p>
+      <ul class="list-group col-md-7">
+        <li class="list-group-item"><span class="badge"><%= number_to_currency(@user.annual_income) %></span>Annual Income</li>
+        <li class="list-group-item"><span class="badge"><%= number_to_currency(@user.budgeted_monthly_pmt) %></span>Budget Monthly Payment</li>
+        <li class="list-group-item"><span class="badge"><%= number_to_currency(@user.down_pmt) %></span>Planned Down Payment</li>
+        <li class="list-group-item"><span class="badge"><%= number_to_currency(@user.monthly_debt) %></span>Monthly Debt</li>
+        <li class="list-group-item"><span class="badge"><%= @user.tax_rate %>%</span>Tax Rate</li>
+        <li class="list-group-item"><span class="badge"><%= @user.term_months %>months</span>Mortgage Term (in months)</li>
+      </ul>  
+    </div>
   </div>
+  <% end %>

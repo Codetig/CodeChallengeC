@@ -35,6 +35,17 @@
   }
 }
 
+#user-details {
+  height: 70%;
+  h3 a{
+  color: blue;
+  }
+}
+
+.alert-msg {
+  margin-top: 3%;
+}
+
 .call {
   background-color: rgba(0,0,0,0.5);
   color: white;
@@ -73,6 +84,11 @@
   .btn { 
     color: white;
   }
+}
+
+.edit-user {
+  @extend #signup;
+  height: 85%;
 }
 
 .request {

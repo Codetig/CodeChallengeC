@@ -17,10 +17,9 @@ ActiveRecord::Schema.define(version: 20150718231138) do
   enable_extension "plpgsql"
 
   create_table "prospects", force: :cascade do |t|
-    t.boolean  "basic_prospect"
-    t.boolean  "save_prospect"
-    t.json     "parameters"
-    t.json     "zillow_result"
+    t.boolean  "saved_prospect"
+    t.text     "parameters"
+    t.text     "zillow_result"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

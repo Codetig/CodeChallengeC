@@ -24,6 +24,11 @@ $(document).ready(function(){
     $('#signup').toggleClass('hidden');
   });
 
+  $('body').on('click', '.show-user', function(e){
+    $('.edit-user').toggleClass('hidden');
+  });
+
+
   $('.result-toggle').on('click', function(e){
     e.preventDefault();
     var content = $(e.target).text();
@@ -76,7 +81,6 @@ $(document).ready(function(){
       result.genRequest();
       result.genResponse();
       result.genAmortization();
-      //add storage
     }
     //scroll to #search-result
     $(window).scrollTop($("#search-result").position().top);
