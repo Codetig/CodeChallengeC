@@ -15,5 +15,4 @@
 # Ignore application configuration
 /config/application.yml
 
-# Ignore secret file to protect secret keys for sigining cookie
-config/secrets.yml
+
