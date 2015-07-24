@@ -1,0 +1,223 @@
+/* line 5, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.intro {
+  height: 100%;
+  padding-top: 3%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("/assets/home3.jpg");
+}
+
+/* line 13, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#prev-search {
+  margin-top: 5%;
+  padding-top: 3%;
+  min-height: 40%;
+  height: 80%;
+}
+/* line 18, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#prev-search ul {
+  list-style-type: none;
+}
+
+/* line 23, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#new-search {
+  padding-top: 5%;
+  padding-bottom: 10%;
+  overflow-y: scroll;
+}
+
+/* line 29, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#search-result {
+  min-height: 40%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 10%;
+}
+/* line 34, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#search-result h2 {
+  margin-top: 4%;
+}
+/* line 37, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#search-result ul {
+  list-style-type: none;
+}
+
+/* line 42, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#user-details {
+  height: 70%;
+}
+/* line 44, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#user-details h3 a {
+  color: blue;
+}
+
+/* line 49, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.alert-msg {
+  margin-top: 3%;
+}
+
+/* line 53, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.call {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 40%;
+  margin: 0 auto;
+  padding-top: 12%;
+  padding-bottom: 5%;
+}
+
+/* line 62, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.action-btns {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+/* line 67, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.action-btns a {
+  margin-right: 5px;
+}
+
+/* line 72, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signin {
+  height: 50%;
+  width: 30%;
+  left: 35%;
+}
+/* line 76, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signin input {
+  color: black;
+}
+/* line 79, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signin .btn {
+  color: white;
+}
+
+/* line 82, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signup, .edit-user {
+  height: 80%;
+  width: 40%;
+  left: 30%;
+}
+/* line 86, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signup input, .edit-user input {
+  color: black;
+}
+/* line 89, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+#signup .btn, .edit-user .btn {
+  color: white;
+}
+
+/* line 94, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.edit-user {
+  height: 85%;
+}
+
+/* line 99, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.request {
+  max-width: 800px;
+}
+/* line 102, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.request .label-info {
+  margin-right: 1%;
+}
+
+/* line 109, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.response ul li:hover {
+  background-color: aliceblue;
+}
+
+/* line 114, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+.res-img {
+  height: 600px;
+  width: 100%;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+html, body {
+  height:100%;
+}
+
+.my-nav {
+  z-index: 300;
+  background-color: rgba(255,255,255, 1);
+}
+
+.my-modal {
+  margin: 0 auto;
+  position: absolute;
+  top: 2%;
+  z-index: 300;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  margin-top: 3%;
+  padding: 1%;
+  /*border-radius: 5%;*/
+}
+
+.twhite{
+  color: white;
+}
+
+.tblack {
+  color: black;
+}
+
+.img-sep {
+  height: 150px;
+  width: 100%;
+}
+
+footer {
+  background-color: black;
+  min-height: 15%;
+}
+
+@media screen and (max-width: 600px) {
+  #prev-search {
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .intro{
+    background-image: url("/assets/home5.jpg");
+  }
+
+  .call {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .action-btns a{
+    margin-bottom: 7px;
+  }
+  
+  .res-img {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("/assets/home2s.jpg") no-repeat;
+    width:600px;
+    height: 400px;
+    padding-left: 600px;
+  }
+}
+
+
+
+
+
