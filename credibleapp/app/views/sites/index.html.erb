@@ -41,6 +41,7 @@
   <div id="prev-search" class="container">
     <h1>Previous Searches</h1>
     <p>The list below are of previous searches made</p>
+    <ul class="list-group"></ul>
   </div>
 
   <%= image_tag("wall1", class: "img-sep") %>
@@ -87,7 +88,7 @@
 
   
 
-  <div id="search-result">
+  <div id="search-result" class="invisible">
     <%= image_tag("home2", class: "res-img") %>
     <h2>Search Result</h2>
     <p class="col-md-12"><a href="#search-result" class="result-toggle">Hide Parameters</a></p>

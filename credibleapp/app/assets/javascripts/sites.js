@@ -2,6 +2,18 @@ $(document).ready(function(){
 
   console.log("sites.js up!");
 
+  $('body').on('click','.del-results', function(e){
+    e.preventDefault();
+    appStorage.clearStorage();
+    appStorage.listStorage();
+  });
+
+  $('body').on('click', '.stored', function(e){
+    e.preventDefault();
+    var result = localStorage.getItem($(e.target).attr('data-z'));
+    showResult(JSON.parse(result));
+  });
+
   $('.sign-in').on('click', function(e){
     $('.call').toggleClass('hidden');
     $('#signin').toggleClass('hidden');
@@ -27,7 +39,9 @@ $(document).ready(function(){
   $(".search-form").on("submit", function(e){
     e.preventDefault();
     fData = $(this).serializeArray();
-    console.log($(this).attr("action"));
+    //I have chosen not to make the inputs blank here because I think 
+    //most people would want to make minor changes to see how affordabillty
+    //changes rather than start fresh each time.
 
     $.ajax({
       url:$(this).attr("action"),
@@ -35,11 +49,13 @@ $(document).ready(function(){
       dataType: "json",
       data: fData,
       success: function(data){
-        console.log(data);
+        // console.log(data);
         showResult(data);
+        appStorage.storeResult(data);
+        appStorage.listStorage();
       },
       error: function(data){
-        console.log(data);
+        // console.log(data);
         showResult(data, true);
       }
     });// end of ajax call
@@ -60,13 +76,80 @@ $(document).ready(function(){
       result.genRequest();
       result.genResponse();
       result.genAmortization();
-      // genResult(data);
+      //add storage
     }
     //scroll to #search-result
     $(window).scrollTop($("#search-result").position().top);
     // body...
   }
 
+  //object to store the last 15 searches in local storage and retrieve them on click
+  function ResultStorage(){
+    this.resultsArray = [];
+    //ZMA => Zillow Mortgage Affordability
+
+    for (var i = 0; i < 15; i++) {
+      var key = "ZMA" + i, value = localStorage.getItem(key);
+      if(value){
+        this.resultsArray.push(key);
+      }
+    }
+  }
+  ResultStorage.prototype.clearStorage = function(){
+    localStorage.clear();
+    this.resultsArray = [];
+    return;
+  };
+  ResultStorage.prototype.listStorage = function(){
+      $('#prev-search .del-results').parent('p').remove();
+      $('#prev-search ul').empty();
+      if(this.resultsArray.length < 1) {return;}
+    this.resultsArray.forEach(function(k,i) {
+      var value = JSON.parse(localStorage.getItem(k));
+      var content = ["Affordable Mortgage: $", parseInt(value.response.affordabilityAmount).toLocaleString(),
+      "Monthly Mortgage Desired: $", value.request.monthlypayment];
+      var line = "<li class='list-group-item'>" + makeEl("p", "col-md-4",content[0] + content[1]) +
+      makeEl("p", "col-md-4",content[2] + content[3]) + " <a href='#' class='stored' data-z='" + k + "'>show</a><li/>";
+      $('#prev-search ul').append(line);
+    });
+    $('#prev-search').append(makeEl("p","","<a href='#' class='del-results'>Clear All</a>"));
+    return;
+  };
+  ResultStorage.prototype.storeResult = function(rdata){
+    var capacity = this.resultsArray.length, value = JSON.stringify(rdata);
+
+    if(capacity > 0){
+      var duplicate = false;
+      this.resultsArray.forEach(function(r) {
+        duplicate = value === localStorage.getItem(r);
+      });
+      if(duplicate){return;}
+    }
+
+    if(capacity < 15){
+      //store
+      localStorage.setItem("ZMA" + capacity, value);
+      this.resultsArray.push("ZMA" + capacity);
+    } else {
+      //remove the first and add to the end
+      //need to figure out a more efficient way to preserve order
+      for (var i = 0; i < 15; i++) {
+        if(i === 14){
+          localStorage.setItem("ZMA" + 1, value);
+          break;
+        }
+        localStorage.setItem("ZMA" + i, localStorage.getItem("ZMA" + (i + 1)));
+      }
+    }
+    return;
+  };
+
+  ResultStorage.prototype.getShowResult = function(key){
+    var result = localStorage.getItem(key);
+    showResult(result);
+  };
+
+  //object to process result data from zillow
   function Result(rdata){
     this.rdata = rdata;
   }
@@ -163,6 +246,7 @@ $(document).ready(function(){
     });
 
     $("#search-result .amortization").addClass("hidden");
+    $("#search-result").removeClass('invisible');
     return;
   };
 
@@ -173,53 +257,13 @@ $(document).ready(function(){
         "<p class='col-md-2 text-center'>" + principal + "</p><p class='col-md-2 text-center'>" + ending + "</p></li>";
   };
 
-
-  //generate the html for response object
-  // var genResult = function(data) {
-
-  //   //request parameter display
-  //   var req = data.request, res = data.response, parameters = "";
-  //   var reqCats = [["Annual Income: $", req.annualincome], ["Monthly Mortgage Desired: $", req.monthlypayment],
-  //   ["Expected Down Payment: $", req.down], ["Current Monthly Debt: $", req.monthlydebts], ["Expected Interest Rate: ", req.rate],
-  //   ["Amortization Schedule: ", req.schedule], ["Desired Mortgage Term: ", req.terminmonths], ["Debt to Income Ratio: ", req.debttoincome],
-  //   ["Estimated Tax Rate: ", req.incometax], ["Desired Zipcode: ", req.zipcode], ["Hazard Insurance Premium: $", req.hazard],
-  //   ["PMI Premium: $", req.pmi], ["Property Tax: $", req.propertytax], ["Monthly HOA Fees: $", req.hoa]
-  //   ];
-
-  //   reqCats.forEach(function(cat){
-  //     if(cat[1] && cat[1] !== '0'){
-  //       parameters = makeEl("span", "label label-info", cat[0] + cat[1]);
-  //       if(cat[0] === "Desired Mortgage Term: "){
-  //         parameters = makeEl("span", "label label-info", cat[0] + cat[1] + " months");
-  //         $("#search-result .request").append(parameters);
-  //       } else if(cat[0] === "Expected Interest Rate: " || cat[0] === "Debt to Income Ratio: " || cat[0] === "Estimated Tax Rate: ") {
-  //         parameters = makeEl("span", "label label-info", cat[0] + cat[1] + "%");
-  //         $("#search-result .request").append(parameters);
-  //       } else {
-  //         $("#search-result .request").append(parameters);
-  //       }
-        
-  //       if($('#search-result .request .label').length % 5 === 0){
-  //         $("#search-result .request").append("<br>");
-  //       }
-
-  //     }
-  //   });
-
-  //   //Display Response
-    
-  //   return;
-  // };
-
   //making html elements
   function makeEl(tag, tclass, content){
     return "<" + tag +" class='" + tclass + "''>" + content + "</" + tag + ">";
   }
 
-
-  
-
-  
+  var appStorage = new ResultStorage();
+  appStorage.listStorage();
 });
 
 // $(document).on("page: load", function(){
