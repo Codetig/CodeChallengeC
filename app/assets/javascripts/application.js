@@ -17,6 +17,8 @@
 $(document).ready(function(){
   console.log("Applcation.js up!");
 
+  $('.alert-msg').fadeOut(5000);
+
   //setting the tabs to go active and inactive
   var navs = [$('.intro'),$('#prev-search'), $('#new-search')];
   navs.forEach(function(el, i){

@@ -4,21 +4,19 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     if @user.id == params[:id].to_i
-      user_params[:tax_rate] = user_params[:tax_rate].to_i
-      user_params[:term_months] = user_params[:term_months].to_i
-      user_params[:annual_income] = user_params[:annual_income].to_i
-      user_params[:down_pmt] = user_params[:down_pmt].to_i
-      user_params[:budgeted_monthly_pmt] = user_params[:budgeted_monthly_pmt].to_i
-      user_params[:monthly_debt] = user_params[:monthly_debt].to_i
+      
 
       if @user.update_attributes(user_params)
-        flash[:success] = "#{@user.first_name} profile updated"
-        render root_path
+
+        flash.now[:success] = "#{@user.first_name} profile updated"
+        render "sites/index.html.erb"
       else
-        redirect_to root_path, notice: "Please check your input for errors"
+        flash.now[:notice] = "Please check your input for errors"
+        render "sites/index.html.erb"
       end
     else
-      redirect_to root_path, alert: "Update Failed: Permission denied"
+      flash.now[:alert] = "Update Failed: Permission denied"
+      redirect_to root_path
     end
   end
 
@@ -27,7 +25,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       @user = user
-      flash[:success] = "Success: Welcome #{user.first_name}"
+      flash.now[:success] = "Success: Welcome #{user.first_name}"
       render "sites/index.html.erb"
 
     else
@@ -40,7 +38,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params["password"])
       session[:user_id] = user.id
       @user = user
-      flash[:success] = "Welcome #{user.first_name}"
+      flash.now[:success] = "Welcome #{user.first_name}"
       render "sites/index.html.erb"
     else
       redirect_to :back, notice: "Login Failed: Please check your email and password"
@@ -50,7 +48,7 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
     flash[:success] = "You have logged out successfully"
-    render "sites/index.html.erb"
+    redirect_to root_path
   end
 
   private

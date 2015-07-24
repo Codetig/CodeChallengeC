@@ -4,6 +4,7 @@
 
 .intro {
   height: 100%;
+  padding-top: 3%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url("/assets/home3.jpg");
@@ -11,7 +12,9 @@
 
 #prev-search {
   margin-top: 5%;
-  height: 100%;
+  padding-top: 3%;
+  min-height: 40%;
+  height: 80%;
   ul{
   list-style-type: none;
   }
@@ -24,6 +27,7 @@
 }
 
 #search-result {
+  min-height: 40%;
   height: 100%;
   overflow-y: scroll;
   padding-bottom:10%;
@@ -47,7 +51,7 @@
 }
 
 .call {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
   color: white;
   width: 40%;
   margin: 0 auto;
@@ -57,8 +61,9 @@
 
 .action-btns {
   display: block;
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
+  margin-top: 2%;
   a {
     margin-right: 5px;
   }

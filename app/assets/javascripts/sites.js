@@ -29,7 +29,7 @@ $(document).ready(function(){
   });
 
 
-  $('.result-toggle').on('click', function(e){
+  $('body').on('click', '.result-toggle', function(e){
     e.preventDefault();
     var content = $(e.target).text();
     if (content.indexOf('Hide') >= 0) {
@@ -55,6 +55,7 @@ $(document).ready(function(){
       data: fData,
       success: function(data){
         // console.log(data);
+        
         showResult(data);
         appStorage.storeResult(data);
         appStorage.listStorage();
@@ -69,6 +70,7 @@ $(document).ready(function(){
 
   //add result to DOM
   function showResult(data, isError) {
+    $('#search-result').removeClass('hidden');
     if(isError){
       var msg = JSON.parse(data.responseText);
       console.log(msg.error);
@@ -250,7 +252,6 @@ $(document).ready(function(){
     });
 
     $("#search-result .amortization").addClass("hidden");
-    $("#search-result").removeClass('invisible');
     return;
   };
 
