@@ -70,13 +70,15 @@ $(document).ready(function(){
 
   //add result to DOM
   function showResult(data, isError) {
-    $('#search-result').removeClass('hidden');
+    $('#search-result, #search-result p, #search-result div').removeClass('hidden');
+    $('#entry-error').remove();
+    //$("#search-result p").reClass('hidden');
     if(isError){
       var msg = JSON.parse(data.responseText);
       console.log(msg.error);
-      $("#search-result p").remove();
+      $("#search-result p, #search-result div").addClass('hidden');
       $("#search-result").append(
-        '<p class="alert alert-warning">Request Failed: ' + msg.error + '</p>'
+        '<p id="entry-error" class="alert alert-warning">Request Failed: ' + msg.error + '</p>'
         );
     } else {
       var result = new Result(data);
@@ -202,6 +204,7 @@ $(document).ready(function(){
   Result.prototype.genResponse = function(){
     //Display Response
     $("#search-result .response ul").empty();
+    $("#search-result .response h3").remove();
     $("#search-result .response").prepend("<h3>Affordability Estimates</h3>"+
       "<p>Given the about parameters, your affordability estimates are stated below:</p>");
     var resp = this.rdata.response, temp;
@@ -231,7 +234,7 @@ $(document).ready(function(){
 
   Result.prototype.genAmortization = function(){
     //display amortization
-    $("#search-result .amortization ul").remove();
+    $("#search-result .amortization ul, #search-result .amortization h3").remove();
     $("#search-result .amortization").append("<h3>Amortization Schedule</h3>");
     var resp = this.rdata.response;
     var both = resp.annualAmortizationSchedule && resp.monthlyAmortizationSchedule;
