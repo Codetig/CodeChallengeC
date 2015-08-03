@@ -13,50 +13,51 @@
   padding-top: 3%;
   min-height: 40%;
   height: 80%;
+  overflow-y: scroll;
 }
-/* line 18, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 19, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #prev-search ul {
   list-style-type: none;
 }
 
-/* line 23, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 24, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #new-search {
   padding-top: 5%;
   padding-bottom: 10%;
   overflow-y: scroll;
 }
 
-/* line 29, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 30, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #search-result {
   min-height: 40%;
   height: 100%;
   overflow-y: scroll;
   padding-bottom: 10%;
 }
-/* line 34, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 35, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #search-result h2 {
   margin-top: 4%;
 }
-/* line 37, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 38, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #search-result ul {
   list-style-type: none;
 }
 
-/* line 42, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 43, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #user-details {
   height: 70%;
 }
-/* line 44, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 45, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #user-details h3 a {
   color: blue;
 }
 
-/* line 49, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 50, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .alert-msg {
   margin-top: 3%;
 }
 
-/* line 53, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 54, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .call {
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
@@ -66,70 +67,70 @@
   padding-bottom: 5%;
 }
 
-/* line 62, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 63, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .action-btns {
   display: block;
   width: 90%;
   margin: 0 auto;
   margin-top: 2%;
 }
-/* line 67, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 68, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .action-btns a {
   margin-right: 5px;
 }
 
-/* line 72, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 73, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signin {
   height: 50%;
   width: 30%;
   left: 35%;
 }
-/* line 76, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 77, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signin input {
   color: black;
 }
-/* line 79, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 80, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signin .btn {
   color: white;
 }
 
-/* line 82, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 83, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signup, .edit-user {
   height: 80%;
   width: 40%;
   left: 30%;
 }
-/* line 86, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 87, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signup input, .edit-user input {
   color: black;
 }
-/* line 89, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 90, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 #signup .btn, .edit-user .btn {
   color: white;
 }
 
-/* line 94, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 95, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .edit-user {
   height: 85%;
 }
 
-/* line 99, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 100, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .request {
   max-width: 800px;
 }
-/* line 102, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 103, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .request .label-info {
   margin-right: 1%;
 }
 
-/* line 109, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 110, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .response ul li:hover {
   background-color: aliceblue;
 }
 
-/* line 114, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
+/* line 115, /Users/Beorn/programming/other/challenges/credible/CodeChallengeC/credibleapp/app/assets/stylesheets/sites.scss */
 .res-img {
-  height: 600px;
+  height: 450px;
   width: 100%;
 }
 /*
