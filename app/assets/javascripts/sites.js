@@ -204,9 +204,11 @@ $(document).ready(function(){
   Result.prototype.genResponse = function(){
     //Display Response
     $("#search-result .response ul").empty();
-    $("#search-result .response h3").remove();
-    $("#search-result .response").prepend("<h3>Affordability Estimates</h3>"+
-      "<p>Given the about parameters, your affordability estimates are stated below:</p>");
+    if($("#search-result .response h3").length < 1 || $("#search-result .response p").length < 1) {
+      $("#search-result .response").prepend("<h3>Affordability Estimates</h3>"+
+      "<p>Given the above parameters, your affordability estimates are stated below:</p>");
+    }
+    
     var resp = this.rdata.response, temp;
     var respCats = [["Affordable Mortgage:", resp.affordabilityAmount], ["Monthly Income:", resp.monthlyIncome],
     ["Monthly Income Tax:", resp.monthlyIncomeTax], ["Other Monthly Debts:", resp.monthlyDebts],
@@ -234,8 +236,11 @@ $(document).ready(function(){
 
   Result.prototype.genAmortization = function(){
     //display amortization
-    $("#search-result .amortization ul, #search-result .amortization h3").remove();
-    $("#search-result .amortization").append("<h3>Amortization Schedule</h3>");
+    $("#search-result .amortization ul, #search-result .amortization h4").remove();
+    if($('#search-result .amortization h3').length < 1){
+      $("#search-result .amortization").append("<h3>Amortization Schedule</h3>");
+    }
+    
     var resp = this.rdata.response;
     var both = resp.annualAmortizationSchedule && resp.monthlyAmortizationSchedule;
     var schedule = both ? [resp.annualAmortizationSchedule, resp.monthlyAmortizationSchedule] : 
